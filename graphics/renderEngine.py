@@ -14,10 +14,11 @@ class RenderEngine:
         self.clock = clock
         self.done = False
 
-        self.player = PlayerHandler(self.window, pg.Rect(50, 50, 50, 50))
+        self.ground = pg.Rect(0, config.HEIGHT - config.GROUND_HEIGHT, config.WIDTH, config.GROUND_HEIGHT)
+        self.player = PlayerHandler(self.window, pg.Rect(config.PLAYER_SIZE, config.PLAYER_SIZE, config.PLAYER_SIZE, config.PLAYER_SIZE), self.ground)
         self.pipes = PipeHandler(self.window)
 
-        self.dw = draw.Draw(window)
+        self.dw = draw.Draw(window, self.ground)
 
     def checkKeys(self):
         key = pg.key.get_pressed()
@@ -29,6 +30,7 @@ class RenderEngine:
 
         if key[pg.K_ESCAPE]:
             self.done = True
+            print(self.done)
 
     def checkEvents(self):
         for event in pg.event.get():
@@ -38,13 +40,13 @@ class RenderEngine:
 
     async def main(self):
         while not self.done and not self.player.dead:
+            self.done = True if self.pipes.checkCollision(self.player.player) else False  # Collision detection, must be done before checking keys
+
             self.checkKeys()
             self.checkEvents()
 
             self.player.update()
             self.pipes.pipesUpdate()
-
-            self.done = True if self.pipes.checkCollision(self.player.player) else False # Collision detection
 
             self.dw.draw(self.player.player, self.pipes.pipes)
             pg.display.update()

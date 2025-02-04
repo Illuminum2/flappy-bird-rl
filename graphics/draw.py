@@ -2,14 +2,15 @@ import pygame as pg
 import constants as config
 
 class Draw:
-    def __init__(self, window):
+    def __init__(self, window, ground):
         self.window = window
+        self.ground = ground
 
     def draw(self, player, pipes):
         self.window.fill(config.BG_COLOR)
 
-        pg.draw.rect(self.window, config.GROUND_COLOR, pg.Rect(0, config.GROUND_HEIGHT, config.WIDTH, config.HEIGHT - config.GROUND_HEIGHT))
-        pg.draw.rect(self.window, config.BIRD_COLOR, player)
+        pg.draw.rect(self.window, config.GROUND_COLOR, self.ground)  # Draw ground
+        pg.draw.rect(self.window, config.BIRD_COLOR, player) # Draw player
 
         for pipe in pipes:
             pg.draw.rect(self.window, config.PIPE_COLOR, pipe)
