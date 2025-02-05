@@ -15,7 +15,7 @@ class RenderEngine:
         self.done = False
 
         self.ground = pg.Rect(0, config.HEIGHT - config.GROUND_HEIGHT, config.WIDTH, config.GROUND_HEIGHT)
-        self.player = PlayerHandler(self.window, pg.Rect(config.PLAYER_SIZE, config.PLAYER_SIZE, config.PLAYER_SIZE, config.PLAYER_SIZE), self.ground)
+        self.player = PlayerHandler(self.window, pg.Rect(config.PLAYER_X, ((config.HEIGHT-config.GROUND_HEIGHT)/2)-(config.PLAYER_SIZE/2), config.PLAYER_SIZE, config.PLAYER_SIZE), self.ground)
         self.pipes = PipeHandler(self.window)
 
         self.dw = draw.Draw(window, self.ground)

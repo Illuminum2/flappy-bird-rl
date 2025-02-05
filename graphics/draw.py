@@ -1,5 +1,7 @@
 import pygame as pg
 import constants as config
+from constants import GROUND_COLOR, GROUND_HEIGHT
+
 
 class Draw:
     def __init__(self, window, ground):
@@ -14,7 +16,6 @@ class Draw:
 
         for pipe in pipes:
             pg.draw.rect(self.window, config.PIPE_COLOR, pipe)
-
 
     def endscreen(self):
         self.window.fill(config.BG_COLOR)
