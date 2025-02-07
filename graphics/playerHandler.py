@@ -1,10 +1,11 @@
+import pygame as pg
 import constants as config
 
 class PlayerHandler:
-    def __init__(self, window, player, ground):
+    def __init__(self, window):
         self.window = window
-        self.player = player
-        self.ground = ground
+
+        self.player = pg.Rect(config.PLAYER_X, ((config.HEIGHT-config.GROUND_HEIGHT)/2)-(config.PLAYER_SIZE/2), config.PLAYER_SIZE, config.PLAYER_SIZE)
         self.velocity = 0
         self.dead = False
 
@@ -18,10 +19,3 @@ class PlayerHandler:
 
     def move(self):
         self.player.move_ip(0, self.velocity)
-        if self.player.colliderect(self.ground):
-            self.player.y = config.HEIGHT - config.GROUND_HEIGHT
-            self.velocity = 0
-            self.dead = True
-        elif self.player.y <= 0:
-            self.player.y = 1  # Set to slightly below the top limit
-            self.velocity = 0

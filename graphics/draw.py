@@ -5,12 +5,11 @@ import constants as config
 class Draw:
     def __init__(self, window, ground):
         self.window = window
-        self.ground = ground
 
-    def draw(self, player, pipePairs):
+    def draw(self, player, pipePairs, ground):
         self.window.fill(config.BG_COLOR)
 
-        pg.draw.rect(self.window, config.GROUND_COLOR, self.ground)  # Draw ground
+        pg.draw.rect(self.window, config.GROUND_COLOR, ground)  # Draw ground
         pg.draw.rect(self.window, config.PLAYER_COLOR, player) # Draw player
 
         #print("Drawing pipes:")

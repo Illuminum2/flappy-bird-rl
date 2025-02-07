@@ -10,6 +10,7 @@ from graphics.pipe import Pipe as P
 class PipeHandler:
     def __init__(self, window):
         self.window = window
+
         self.pairs = []
 
     def appendPair(self, P):

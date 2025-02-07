@@ -5,17 +5,19 @@ import pygame as pg
 import constants as config
 
 from graphics import draw
+from graphics.groundHandler import GroundHandler
 from graphics.pipeHandler import PipeHandler
 from graphics.playerHandler import PlayerHandler
 
 class RenderEngine:
     def __init__(self, window, clock):
         self.window = window
+
         self.clock = clock
         self.done = False
 
-        self.ground = pg.Rect(0, config.HEIGHT - config.GROUND_HEIGHT, config.WIDTH, config.GROUND_HEIGHT)
-        self.player = PlayerHandler(self.window, pg.Rect(config.PLAYER_X, ((config.HEIGHT-config.GROUND_HEIGHT)/2)-(config.PLAYER_SIZE/2), config.PLAYER_SIZE, config.PLAYER_SIZE), self.ground)
+        self.ground = GroundHandler(self.window)
+        self.player = PlayerHandler(self.window)
         self.pipePairs = PipeHandler(self.window)
 
         self.dw = draw.Draw(window, self.ground)
@@ -41,7 +43,7 @@ class RenderEngine:
     async def main(self):
         self.pipePairs.generatePair()
         while not self.done and not self.player.dead:
-            self.done = True if self.pipePairs.checkCollision(self.player.player) else False  # Collision detection, must be done before checking keys
+            self.done = True if self.pipePairs.checkCollision(self.player.player) or self.ground.checkCollision(self.player.player) else False  # Collision detection, must be done before checking keys
 
             self.checkKeys()
             self.checkEvents()
@@ -49,7 +51,7 @@ class RenderEngine:
             self.player.update()
             self.pipePairs.updatePipes()
 
-            self.dw.draw(self.player.player, self.pipePairs.pairs)
+            self.dw.draw(self.player.player, self.pipePairs.pairs, self.ground.ground)
             pg.display.update()
 
             self.clock.tick(config.FPS)
