@@ -1,4 +1,5 @@
 import pygame as pg
+
 import constants as config
 
 class PlayerHandler:

@@ -1,6 +1,6 @@
 import pygame as pg
-import constants as config
 
+import constants as config
 
 class Draw:
     def __init__(self, window, ground):

@@ -1,7 +1,8 @@
-import asyncio
 import sys
+import asyncio
 
 import pygame as pg
+
 import constants as config
 
 from graphics import draw

@@ -1,9 +1,7 @@
+import pygame as pg
 from random import randint
 
-import pygame as pg
-import random
 import constants as config
-from constants import PIPE_GAP, PIPE_MIN_HEIGHT
 
 from graphics.pipe import Pipe as P
 
@@ -14,7 +12,6 @@ class PipeHandler:
         self.pairs = []
 
     def appendPair(self, P):
-        print("Append pipe")
         self.pairs.append(P)
 
     def removePair(self, pair):
@@ -23,7 +20,6 @@ class PipeHandler:
     def generatePair(self):
         rand = randint(config.PIPE_MIN_HEIGHT, config.HEIGHT-config.GROUND_HEIGHT-config.PIPE_MIN_HEIGHT-config.PIPE_GAP)
 
-        #print("Pipe generator: " + str(config.WIDTH+config.PIPE_WIDTH))
         self.appendPair(P(pg.Rect(config.WIDTH + config.PIPE_WIDTH, 0, config.PIPE_WIDTH, rand), pg.Rect(config.WIDTH + config.PIPE_WIDTH, rand + config.PIPE_GAP, config.PIPE_WIDTH, config.HEIGHT-config.GROUND_HEIGHT-rand-config.PIPE_GAP)))
 
     def updatePipes(self):
@@ -33,7 +29,6 @@ class PipeHandler:
             if pair.update():
                 self.removePair(pair)
                 self.generatePair()
-                print("Pipe removed")
 
     def checkCollision(self, player):
         for pair in self.pairs:
