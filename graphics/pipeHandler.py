@@ -20,12 +20,10 @@ class PipeHandler:
         self.pairs.remove(pair)
 
     def generatePair(self):
-        max_pipe_height = config.HEIGHT - config.GROUND_HEIGHT - config.PIPE_GAP - config.PIPE_MIN_HEIGHT
-        rand = random.randint(config.PIPE_MIN_HEIGHT, max_pipe_height)
+        rand = randint(config.PIPE_MIN_HEIGHT, config.HEIGHT-config.GROUND_HEIGHT-config.PIPE_MIN_HEIGHT-config.PIPE_GAP)
+
         #print("Pipe generator: " + str(config.WIDTH+config.PIPE_WIDTH))
-        self.appendPair(P(pg.Rect(config.WIDTH+config.PIPE_WIDTH, 0, config.PIPE_WIDTH, rand+PIPE_MIN_HEIGHT), pg.Rect(config.WIDTH+config.PIPE_WIDTH, rand+config.PIPE_GAP, config.PIPE_WIDTH, (config.HEIGHT-config.GROUND_HEIGHT)-(rand+config.PIPE_GAP))))
-        #self.appendPipe(config.WIDTH+config.PIPE_WIDTH, 0, config.PIPE_WIDTH, 200)
-        #self.appendPipe(config.WIDTH+config.PIPE_WIDTH, config.HEIGHT-200, config.PIPE_WIDTH, 200)
+        self.appendPair(P(pg.Rect(config.WIDTH + config.PIPE_WIDTH, 0, config.PIPE_WIDTH, rand), pg.Rect(config.WIDTH + config.PIPE_WIDTH, rand + config.PIPE_GAP, config.PIPE_WIDTH, config.HEIGHT-config.GROUND_HEIGHT-rand-config.PIPE_GAP)))
 
     def updatePipes(self):
         i = 0
