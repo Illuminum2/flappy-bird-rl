@@ -1,6 +1,5 @@
 import pygame as pg
 import constants as config
-from constants import GROUND_COLOR, GROUND_HEIGHT
 
 
 class Draw:
@@ -8,14 +7,17 @@ class Draw:
         self.window = window
         self.ground = ground
 
-    def draw(self, player, pipes):
+    def draw(self, player, pipePairs):
         self.window.fill(config.BG_COLOR)
 
         pg.draw.rect(self.window, config.GROUND_COLOR, self.ground)  # Draw ground
         pg.draw.rect(self.window, config.BIRD_COLOR, player) # Draw player
 
-        for pipe in pipes:
-            pg.draw.rect(self.window, config.PIPE_COLOR, pipe)
+        #print("Drawing pipes:")
+        for pair in pipePairs:
+            #print("Drawing pipe: " + str(pair.pipe1))
+            pg.draw.rect(self.window, config.PIPE_COLOR, pair.pipe1)
+            pg.draw.rect(self.window, config.PIPE_COLOR, pair.pipe2)
 
     def endscreen(self):
         self.window.fill(config.BG_COLOR)

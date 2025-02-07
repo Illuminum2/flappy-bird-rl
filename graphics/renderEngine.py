@@ -16,7 +16,7 @@ class RenderEngine:
 
         self.ground = pg.Rect(0, config.HEIGHT - config.GROUND_HEIGHT, config.WIDTH, config.GROUND_HEIGHT)
         self.player = PlayerHandler(self.window, pg.Rect(config.PLAYER_X, ((config.HEIGHT-config.GROUND_HEIGHT)/2)-(config.PLAYER_SIZE/2), config.PLAYER_SIZE, config.PLAYER_SIZE), self.ground)
-        self.pipes = PipeHandler(self.window)
+        self.pipePairs = PipeHandler(self.window)
 
         self.dw = draw.Draw(window, self.ground)
 
@@ -39,16 +39,17 @@ class RenderEngine:
 
 
     async def main(self):
+        self.pipePairs.generatePair()
         while not self.done and not self.player.dead:
-            self.done = True if self.pipes.checkCollision(self.player.player) else False  # Collision detection, must be done before checking keys
+            self.done = True if self.pipePairs.checkCollision(self.player.player) else False  # Collision detection, must be done before checking keys
 
             self.checkKeys()
             self.checkEvents()
 
             self.player.update()
-            self.pipes.pipesUpdate()
+            self.pipePairs.updatePipes()
 
-            self.dw.draw(self.player.player, self.pipes.pipes)
+            self.dw.draw(self.player.player, self.pipePairs.pairs)
             pg.display.update()
 
             self.clock.tick(config.FPS)
