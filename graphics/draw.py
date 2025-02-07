@@ -11,7 +11,7 @@ class Draw:
         self.window.fill(config.BG_COLOR)
 
         pg.draw.rect(self.window, config.GROUND_COLOR, self.ground)  # Draw ground
-        pg.draw.rect(self.window, config.BIRD_COLOR, player) # Draw player
+        pg.draw.rect(self.window, config.PLAYER_COLOR, player) # Draw player
 
         #print("Drawing pipes:")
         for pair in pipePairs:
