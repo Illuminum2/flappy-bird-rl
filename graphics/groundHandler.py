@@ -9,4 +9,4 @@ class GroundHandler:
         self.ground = pg.Rect(0, config.HEIGHT-config.GROUND_HEIGHT, config.WIDTH, config.GROUND_HEIGHT)
 
     def checkCollision(self, player):
-        return player.colliderect(self.ground)
+        return player.y > config.HEIGHT-config.GROUND_HEIGHT
