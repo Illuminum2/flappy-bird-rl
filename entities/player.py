@@ -1,12 +1,9 @@
-import pygame as pg
-
 import constants as config
 
-class PlayerManager:
-    def __init__(self, window):
-        self.window = window
-
-        self.player = pg.Rect(config.PLAYER_X, ((config.HEIGHT-config.GROUND_HEIGHT)/2)-(config.PLAYER_SIZE/2), config.PLAYER_SIZE, config.PLAYER_SIZE)
+class Player:
+    def __init__(self, player):
+        self.player = player
+        self.x, self.y = player.x , player.y
         self.velocity = 0
         self.dead = False
 

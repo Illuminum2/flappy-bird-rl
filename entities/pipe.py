@@ -3,7 +3,7 @@ import constants as config
 class Pipe:
     def __init__(self, pipe1, pipe2):
         self.pipe1, self.pipe2 = pipe1, pipe2
-        self.x, self.y = pipe1.x , pipe1.y
+        self.x = pipe1.x
 
     def update(self):
         #self.x = 400 #config.PIPE_SPEED
