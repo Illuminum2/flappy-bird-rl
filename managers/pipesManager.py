@@ -2,10 +2,9 @@ import pygame as pg
 from random import randint
 
 import constants as config
+from entities.pipe import Pipe as P
 
-from graphics.pipe import Pipe as P
-
-class PipeHandler:
+class PipeManager:
     def __init__(self, window):
         self.window = window
 

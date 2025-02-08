@@ -1,9 +1,7 @@
 import asyncio
-
 import pygame as pg
 
 import constants as config
-
 from graphics import renderEngine as re
 
 # initializing pygame and setting the screen resolution

@@ -1,14 +1,12 @@
 import sys
 import asyncio
-
 import pygame as pg
 
 import constants as config
-
 from graphics import draw
-from graphics.groundHandler import GroundHandler
-from graphics.pipeHandler import PipeHandler
-from graphics.playerHandler import PlayerHandler
+from managers.groundManager import GroundManager
+from managers.pipesManager import PipeManager
+from managers.playerManager import PlayerManager
 
 class RenderEngine:
     def __init__(self, window, clock):
@@ -17,9 +15,9 @@ class RenderEngine:
         self.clock = clock
         self.done = False
 
-        self.ground = GroundHandler(self.window)
-        self.player = PlayerHandler(self.window)
-        self.pipePairs = PipeHandler(self.window)
+        self.ground = GroundManager(self.window)
+        self.player = PlayerManager(self.window)
+        self.pipePairs = PipeManager(self.window)
 
         self.dw = draw.Draw(window, self.ground)
 

@@ -2,7 +2,7 @@ import pygame as pg
 
 import constants as config
 
-class PlayerHandler:
+class PlayerManager:
     def __init__(self, window):
         self.window = window
 
