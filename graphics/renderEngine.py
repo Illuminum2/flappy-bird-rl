@@ -39,6 +39,7 @@ class RenderEngine:
     async def main(self):
         self.pipePairs.generatePair()
         self.players.spawnPlayer()
+
         while not self.done:
             self.done = True if self.pipePairs.checkCollision(self.players.players[0].player) or self.ground.checkCollision(self.players.players[0].player) else False  # Collision detection, must be done before checking keys
 
@@ -53,6 +54,7 @@ class RenderEngine:
 
             self.clock.tick(config.FPS)
             await asyncio.sleep(0)
+
         self.dw.endscreen()
         pg.display.update()
 
