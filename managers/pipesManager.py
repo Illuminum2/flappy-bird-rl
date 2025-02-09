@@ -9,7 +9,7 @@ class PipeManager:
         self.window = window
 
         self.pairs = []
-        self.collisionCheckSkip = 0 # Spelling is wrong, but I'm not going to fix it, right is collisionCheckSkip
+        self.collisionCheckSkip = 0
 
     def appendPair(self, P):
         self.pairs.append(P)
