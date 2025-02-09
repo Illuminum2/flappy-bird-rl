@@ -1,5 +1,4 @@
 import constants as config
-from constants import GRAVITY
 
 
 class Player:
@@ -13,9 +12,9 @@ class Player:
         self.velocity += config.GRAVITY
 
         self.player.move_ip(0, self.velocity)
-        if self.player.y < 0: # Out of bounds check
+        if self.player.y < 0:  # Out of bounds check
             self.player.y = 0
-            self.velocity = 0 # Makes player fall down faster, fix this later
+            self.velocity = config.GRAVITY
 
     def jump(self):
         self.velocity = -config.JUMP_HEIGHT
