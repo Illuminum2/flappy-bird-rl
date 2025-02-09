@@ -9,6 +9,7 @@ class PipeManager:
         self.window = window
 
         self.pairs = []
+        self.collisionCheckSkip = 0 # Spelling is wrong, but I'm not going to fix it, right is collisionCheckSkip
 
     def appendPair(self, P):
         self.pairs.append(P)
@@ -30,7 +31,18 @@ class PipeManager:
                 self.generatePair()
 
     def checkCollision(self, player):
-        for pair in self.pairs:
-            if pair.pipe1.colliderect(player) or pair.pipe2.colliderect(player):
-                return True
+        if self.collisionCheckSkip > 0:
+            self.collisionCheckSkip -= 1
+            return False
+
+        playerRect = pg.Rect(config.PLAYER_X, player.y, config.PLAYER_SIZE, config.PLAYER_SIZE)
+        playerRightEdge = config.PLAYER_X + config.PLAYER_SIZE / 2
+
+        for i, pair in enumerate(self.pairs):
+            pairLeftEdge = pair.x - config.PIPE_WIDTH / 2
+            if pairLeftEdge < playerRightEdge:
+                if pair.pipe1.colliderect(playerRect) or pair.pipe2.colliderect(playerRect):
+                    return True
+            elif i == 0: # == instead of is, because == is used for value comparison
+                self.collisionCheckSkip = int((pairLeftEdge - playerRightEdge) / config.PIPE_SPEED)
         return False

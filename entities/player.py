@@ -12,6 +12,8 @@ class Player:
         self.velocity += config.GRAVITY
 
         self.player.move_ip(0, self.velocity)
+        self.y = self.player.y
+
         if self.player.y < 0:  # Out of bounds check
             self.player.y = 0
             self.velocity = config.GRAVITY
