@@ -23,9 +23,7 @@ class PipeManager:
         self.appendPair(P(pg.Rect(config.WIDTH + config.PIPE_WIDTH, 0, config.PIPE_WIDTH, rand), pg.Rect(config.WIDTH + config.PIPE_WIDTH, rand + config.PIPE_GAP, config.PIPE_WIDTH, config.HEIGHT-config.GROUND_HEIGHT-rand-config.PIPE_GAP)))
 
     def updatePipes(self):
-        i = 0
         for pair in self.pairs:
-            i += 1
             if pair.update():
                 self.removePair(pair)
                 self.generatePair()
@@ -45,4 +43,5 @@ class PipeManager:
                     return True
             elif i == 0: # == instead of is, because == is used for value comparison
                 self.collisionCheckSkip = int((pairLeftEdge - playerRightEdge) / config.PIPE_SPEED)
+                return False
         return False
